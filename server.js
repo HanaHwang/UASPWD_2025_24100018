@@ -47,15 +47,15 @@ const server = http.createServer((req, res) => {
         // req.on('data', chunk => body += chunk);
         // req.on('end', () => {
         //     const parsed = parse(body);
-        //     const log = `Nama: ${parsed.name}, Email: ${parsed.email}, Pesan: ${parsed.message}\n`;
+        //     const log = `Nama: ${parsed.sudent_name}, Email: ${parsed.email}, Guru: ${parsed.tutor_name}, Pesan: ${parsed.message}\n`;
         //     fs.appendFileSync('./submissions/data.txt', log);
         //     res.writeHead(200, {'Content-Type' : 'text/plain'});
         //     res.end('Terima kasih! Pesan Anda telah diterima.');
         // });
         let body = '';
-        req.on('data', chunk => body += chunk); //terima potongan data
-        req.on('end', () => { //semua data diterima, siap dimasukan
-            const parsed = parse(body); //mengubah string menjadi objek
+        req.on('data', chunk => body += chunk);
+        req.on('end', () => {
+            const parsed = parse(body);
             const {student_name, email, tutor_name, message} = parsed;
 
             const sql = 'INSERT INTO orders (student_name, email, tutor_name, message) values(?,?,?,?,?)';
