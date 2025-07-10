@@ -47,7 +47,7 @@ const server = http.createServer((req, res) => {
         // req.on('data', chunk => body += chunk);
         // req.on('end', () => {
         //     const parsed = parse(body);
-        //     const log = `Nama: ${parsed.sudent_name}, Email: ${parsed.email}, Guru: ${parsed.tutor_name}, Pesan: ${parsed.message}\n`;
+        //     const log = `Nama: ${parsed.student_name}, Email: ${parsed.email}, Guru: ${parsed.tutor_name}, Pesan: ${parsed.message}\n`;
         //     fs.appendFileSync('./submissions/data.txt', log);
         //     res.writeHead(200, {'Content-Type' : 'text/plain'});
         //     res.end('Terima kasih! Pesan Anda telah diterima.');
@@ -58,7 +58,7 @@ const server = http.createServer((req, res) => {
             const parsed = parse(body);
             const {student_name, email, tutor_name, message} = parsed;
 
-            const sql = 'INSERT INTO orders (student_name, email, tutor_name, message) values(?,?,?,?,?)';
+            const sql = 'INSERT INTO contact (student_name, email, tutor_name, message) VALUES (?, ?, ?, ?)';
             db.query(sql, [student_name, email, tutor_name, message], (err) => {
                 if(err){
                     console.log("gagal tersimpan ke DB");
